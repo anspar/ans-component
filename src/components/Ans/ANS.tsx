@@ -25,7 +25,7 @@ function ANSElem({ data, href }: { data: Result | undefined, href: string | unde
       <img src={details.data ? `${getGateway()}/${data && data[1]}/${details.data.image}` : userIconPh} alt="ANS User Image" className={ansStyles.icon}
         onError={(e) => { e.currentTarget.src = userIconPh }} />
       {
-        useIsMobile() ?
+        !useIsMobile() ?
           <span className="as-text-dark as-text-bold" style={{ marginLeft: '0.25rem' }}>
             {defANS.length > 10 ? `${defANS.substring(0, 7)}...` : defANS}
           </span>
