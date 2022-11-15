@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof ANS> = (args) => {
         <Wallet />
         <div style={{ marginTop: "0.5rem", backgroundColor: "var(--as-light)", padding: "1rem" }}>
           <HosqProvider>
-            <ANS />
+            <ANS href='https://anspar.io' />
           </HosqProvider>
         </div>
       </WalletContext>
