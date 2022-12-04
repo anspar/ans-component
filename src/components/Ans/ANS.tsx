@@ -13,7 +13,7 @@ export interface ANSConnectorProps {
 
 let selectedANS: Result | undefined
 
-function ANSElem({ data, href }: { data: Result | undefined, href: string | undefined }): JSX.Element {
+function ANSElem ({ data, href }: { data: Result | undefined, href: string | undefined }): JSX.Element {
   const defANS = (data != null) ? data[0] : ''
   const details = useGet(`${data && data[1]}/info.json`, true)
   // useEffect(() => {
@@ -36,11 +36,11 @@ function ANSElem({ data, href }: { data: Result | undefined, href: string | unde
   )
 }
 
-export function getSelectedANS(): Result | undefined {
+export function getSelectedANS (): Result | undefined {
   return selectedANS
 }
 
-export function ANS({ href }: { href?: string}): JSX.Element {
+export function ANS ({ href }: { href?: string}): JSX.Element {
   const { address } = useAccount()
   // const [ansData, setAnsData] = useState<Result | undefined>()
   const { chain } = useNetwork()
