@@ -2,7 +2,7 @@
 
 ![release](https://github.com/anspar/ans-component/actions/workflows/release.yml/badge.svg?branch=main) 
 ## Install  
-        npm i @anspar/ans-component
+        npm i @anspar/ans
 
 ## Find [Examples Here](https://anspar.github.io/ans-component)
 

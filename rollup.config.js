@@ -6,6 +6,7 @@ import json from '@rollup/plugin-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import typescript from "@rollup/plugin-typescript";
 import image from 'rollup-plugin-img';
+import terser from '@rollup/plugin-terser'
 
 const packageJson = require("./package.json");
 
@@ -36,7 +37,8 @@ export default [
         extensions: /\.(png|jpg|jpeg|gif|svg)$/, // support png|jpg|jpeg|gif|svg, and it's alse the default value
         limit: 8192,  // default 8192(8k)
         exclude: 'node_modules/**'
-      })
+      }),
+      terser()
     ],
   }
 ];

@@ -13,34 +13,35 @@ export interface ANSConnectorProps {
 
 let selectedANS: Result | undefined
 
-function ANSElem ({ data, href }: { data: Result | undefined, href: string | undefined }): JSX.Element {
+function ANSElem({ data }: { data: Result | undefined }): JSX.Element {
   const defANS = (data != null) ? data[0] : ''
-  const details = useGet(`${data && data[1]}/info.json`, true)
+  const cid_path = `${data[1] !== undefined && data[1]}/info.json`
+  const details = useGet(cid_path, true)
   // useEffect(() => {
   //   if (data === undefined) return
   // }, [data])
-
   return (
-    <a href={href} className={[ansStyles.ans_wallet, 'as-bg-light as-btn ' + `${details.isLoading ? 'as-loading' : ''}`].join(' ')}>
-      <img src={details.data ? `${getGateway()}/${data && data[1]}/${details.data.image}` : userIconPh} alt="ANS User Image" className={ansStyles.icon}
+    <>
+      <img src={`${getGateway()}/${data[1]}/${details?.data?.image}`} alt="ANS User Image" className={ansStyles.icon}
         onError={(e) => { e.currentTarget.src = userIconPh }} />
+
       {
         !useIsMobile() ?
-          <span className="as-text-dark as-text-bold" style={{ marginLeft: '0.25rem' }}>
+          <span className={`as-text-dark as-text-bold ${details.isLoading ? 'as-loading' : ''}`} style={{ marginLeft: '0.25rem' }}>
             {defANS.length > 10 ? `${defANS.substring(0, 7)}...` : defANS}
           </span>
           :
           <></>
       }
-    </a>
+    </>
   )
 }
 
-export function getSelectedANS (): Result | undefined {
+export function getSelectedANS(): Result | undefined {
   return selectedANS
 }
 
-export function ANS ({ href }: { href?: string}): JSX.Element {
+export function ANS({ href }: { href?: string }): JSX.Element {
   const { address } = useAccount()
   // const [ansData, setAnsData] = useState<Result | undefined>()
   const { chain } = useNetwork()
@@ -53,6 +54,15 @@ export function ANS ({ href }: { href?: string}): JSX.Element {
   }
 
   return (
-    <ANSElem data={data} href={href}/>
+    <a href={href} className={[ansStyles.ans_wallet, 'as-bg-light as-btn'].join(' ')}>
+      {
+        data && data[1] ?
+          <ANSElem data={data} />
+          :
+          <>
+            <img src={userIconPh} alt="ANS User Image" className={ansStyles.icon} />
+          </>
+      }
+    </a>
   )
 }
