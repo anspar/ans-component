@@ -27,7 +27,7 @@ function ANSElem({ data }: { data: Result | undefined }): JSX.Element {
 
       {
         !useIsMobile() ?
-          <span className={`as-text-dark as-text-bold ${details.isLoading ? 'as-loading' : ''}`} style={{ marginLeft: '0.25rem' }}>
+          <span className={`as-text-bold ${details.isLoading ? 'as-loading' : ''}`} style={{ marginLeft: '5px' }}>
             {defANS.length > 10 ? `${defANS.substring(0, 7)}...` : defANS}
           </span>
           :
@@ -54,7 +54,7 @@ export function ANS({ href }: { href?: string }): JSX.Element {
   }
 
   return (
-    <a href={href} className={[ansStyles.ans_wallet, 'as-bg-light as-btn'].join(' ')}>
+    <a href={href} className={[ansStyles.ans_wallet, 'as-btn as-btn-secondary'].join(' ')}>
       {
         data && data[1] ?
           <ANSElem data={data} />

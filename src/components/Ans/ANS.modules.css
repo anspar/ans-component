@@ -7,6 +7,8 @@
     border-radius: 1rem;
     /* padding: 2px; */
     max-width: fit-content;
+    color: var(--as-common);
+    text-decoration: none;
 }
 
 .icon {
